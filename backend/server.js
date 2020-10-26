@@ -1,4 +1,5 @@
 import express from "express";
+import path from 'path';
 import session from "express-session";
 import fileStore from "session-file-store";
 import mongoose from "mongoose";
@@ -25,6 +26,10 @@ mongoose.connect(
 );
 
 const app = express();
+
+app.use(express.static(path.resolve('../frontend/build')));
+
+
 const FileStore = fileStore(session);
 // app.use(flash());
 app.use(express.json());
@@ -58,9 +63,13 @@ app.put("/", async (req, res) => {
   res.end();
 });
 
-
 app.use("/auth", authenticateRouter);
 app.use(categoryRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve("../../frontend/build/index.html"));
+});
+
 app.use((err, req, res, next) => {
   console.log(">>>>", err);
 });

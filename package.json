@@ -5,10 +5,12 @@
   "repository": "git@github.com:artemxknpv/expense_tracker.git",
   "author": "ArtemK <brtoaster@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "frontend": "cd frontend && yarn && yarn start",
-    "server": "cd backend && yarn && yarn start",
-    "go": "yarn add concurrently && concurrently \"yarn frontend\" \"yarn server\""
+    "build": "cd frontend && yarn && yarn build",
+    "start": "cd backend && yarn && yarn start"
   },
   "dependencies": {
     "concurrently": "^5.3.0"
